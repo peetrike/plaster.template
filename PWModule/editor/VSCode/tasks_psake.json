@@ -226,7 +226,7 @@
     {
       "label": "Add script",
       "type": "shell",
-      "command": "Invoke-Plaster -TemplatePath ${workspaceFolder}\\..\\plaster.template.telia\\AddTeliaScript -DestinationPath ${input:Folder}",
+      "command": "Invoke-Plaster -TemplatePath ${workspaceFolder}\\..\\plaster.template.pw\\AddPWScript -DestinationPath ${input:Folder}",
       "problemMatcher": [
       {
         "owner": "powershell",
@@ -252,7 +252,7 @@
     {
       "label": "Add function",
       "type": "shell",
-      "command": "Invoke-Plaster -TemplatePath ${workspaceFolder}\\..\\plaster.template.telia\\AddTeliaFunction -DestinationPath ${input:Folder}",
+      "command": "Invoke-Plaster -TemplatePath ${workspaceFolder}\\..\\plaster.template.pw\\AddPWFunction -DestinationPath ${input:Folder}",
       "problemMatcher": [
       {
         "owner": "powershell",
