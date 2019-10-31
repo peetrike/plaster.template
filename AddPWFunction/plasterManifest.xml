@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<plasterManifest schemaVersion="1.1" templateType="Project" xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
+  <metadata>
+    <id>cd3c67b1-9c0f-4ea8-a799-bc26a1ccd88f</id>
+    <name>AddPWFunction</name>
+    <title>New function file project</title>
+    <description>Adds a PowerShell script that contains function to existing project.</description>
+    <version>1.0.0</version>
+    <author>Meelis Nigols</author>
+    <tags>Function</tags>
+  </metadata>
+
+  <parameters>
+    <parameter name="FunctionName" type="text" prompt="Enter the name of the Function" />
+    <parameter name="ScriptPsVersion" type="choice" store="text" prompt="Minimum PowerShell version" default="2">
+      <choice label="&amp;2.0" help="Minimum PowerShell Version required is 2.0 (Deprecated)" value="2.0" />
+      <choice label="&amp;3.0" help="Minimum PowerShell Version required is 3.0 (Legacy)" value="3.0" />
+      <choice label="&amp;5.1" help="Minimum PowerShell Version required is 5.1" value="5.1" />
+      <choice label="&amp;6.0" help="Minimum PowerShell Version required is 6.0 (PowerShell Core/.Net Standard 2.x Compliant)" value="6.0" />
+    </parameter>
+  </parameters>
+
+  <content>
+    <message>&#10;&#10;Adding new PowerShell Function...&#10;&#10;&#10;</message>
+
+    <templateFile source="Function.ps1" destination="${PLASTER_PARAM_FunctionName}.ps1" openInEditor="true" />
+
+    <message>
+
+Your new PowerShell function '$PLASTER_PARAM_FunctionName' has been created.
+
+        </message>
+  </content>
+</plasterManifest>

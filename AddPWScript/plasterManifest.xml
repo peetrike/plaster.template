@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<plasterManifest schemaVersion="1.1" templateType="Project" xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
+  <metadata>
+    <id>987048d4-0fdb-49ea-9a8c-c8b16b285d13</id>
+    <name>AddPWScript</name>
+    <title>Add new Script to existing folder</title>
+    <description>Creates new PowerShell script into existing folder.</description>
+    <version>1.0.0</version>
+    <author>Meelis Nigols</author>
+    <tags>Script</tags>
+  </metadata>
+
+  <parameters>
+    <parameter name="ScriptName" type="text" prompt="Enter the name of the script" />
+    <parameter name="ScriptDesc" type="text" prompt="Enter a description of the script (required for publishing to the PowerShell Gallery)" />
+    <parameter name="Version" type="text" prompt="Enter the version number of the script" default="0.0.1" />
+    <parameter name="FullName" type="user-fullname" prompt="Enter your full name" store="text" />
+    <parameter name="ScriptCompanyName" type="text" prompt="Company name" default="!Zum!" />
+    <parameter name="ScriptPsVersion" type="choice" store="text" prompt="Minimum PowerShell version" default="2">
+      <choice label="&amp;2.0" help="Minimum PowerShell Version required is 2.0 (Deprecated)" value="2.0" />
+      <choice label="&amp;3.0" help="Minimum PowerShell Version required is 3.0 (Legacy)" value="3.0" />
+      <choice label="&amp;5.1" help="Minimum PowerShell Version required is 5.1" value="5.1" />
+      <choice label="&amp;6.0" help="Minimum PowerShell Version required is 6.0 (PowerShell Core/.Net Standard 2.x Compliant)" value="6.0" />
+    </parameter>
+  </parameters>
+
+  <content>
+    <message>&#10;&#10;Creating your PowerShell Script...&#10;&#10;&#10;</message>
+
+    <templateFile source="Script.ps1" destination="${PLASTER_PARAM_ScriptName}.ps1" openInEditor="true" />
+
+    <message>
+
+Your new PowerShell script '$PLASTER_PARAM_ScriptName' has been created.
+
+        </message>
+  </content>
+</plasterManifest>
