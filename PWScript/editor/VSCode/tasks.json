@@ -61,6 +61,32 @@
       ]
     },
     {
+      "label": "Publish",
+      "type": "shell",
+      "command": "Publish-Script -Path ${file} -Repository ${input:Repository}",
+      "problemMatcher": [
+      {
+        "owner": "powershell",
+        "fileLocation": [
+          "absolute"
+        ],
+        "severity": "error",
+        "pattern": [
+          {
+            "regexp": "(.+)",
+            "message": 1
+          },
+          {
+            "regexp": "At (.*\\.ps1):(\\d*) char:(\\d*)(.*)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ]
+      }
+      ]
+    },
+    {
       "label": "Add script",
       "type": "shell",
       "command": "Invoke-Plaster -TemplatePath ${workspaceFolder}\\..\\plaster.template.pw\\AddPWScript -DestinationPath ${input:Folder}",
@@ -114,6 +140,17 @@
     }
   ],
   "inputs": [
+    {
+      "id": "Repository",
+      "type": "pickString",
+      "description": "Name of the repository to publish",
+      "options": [
+        "PSGallery",
+        "LocalRepo",
+        "TeliaInt"
+      ],
+      "default": "LocalRepo"
+    },
     {
       "id": "Folder",
       "type": "promptString",
