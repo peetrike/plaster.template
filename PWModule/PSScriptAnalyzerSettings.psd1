@@ -15,7 +15,7 @@
 
     # Analyze **only** the following rules. Use IncludeRules when you want
     # to invoke only a small subset of the default rules.
-<#     IncludeRules = @(
+    <# IncludeRules = @(
         'PSAvoidDefaultValueSwitchParameter'
         'PSMisleadingBacktick'
         'PSMissingModuleManifestField'
@@ -36,46 +36,60 @@
 
     # You can use rule configuration to configure rules that support it:
     Rules = @{
-        # https://github.com/PowerShell/PSScriptAnalyzer/blob/master/RuleDocumentation/AvoidUsingCmdletAliases.md
         <# PSAvoidUsingCmdletAliases = @{
+            # https://github.com/PowerShell/PSScriptAnalyzer/blob/master/RuleDocumentation/AvoidUsingCmdletAliases.md
             # Do not flag 'cd' alias.
             Whitelist = @("cd")
         } #>
 
-        # https://github.com/PowerShell/PSScriptAnalyzer/blob/master/RuleDocumentation/PlaceCloseBrace.md
-        PSPlaceCloseBrace = @{
+        PSAlignAssignmentStatement = @{
+            # https://github.com/PowerShell/PSScriptAnalyzer/blob/master/RuleDocumentation/AlignAssignmentStatement.md
             Enable = $true
+            CheckHashtable = $true
         }
-        # https://github.com/PowerShell/PSScriptAnalyzer/blob/master/RuleDocumentation/PlaceOpenBrace.md
+
+        PSPlaceCloseBrace = @{
+            # https://github.com/PowerShell/PSScriptAnalyzer/blob/master/RuleDocumentation/PlaceCloseBrace.md
+            Enable = $true
+            NoEmptyLineBefore = $true
+            NewLineAfter = $false
+        }
+
         PSPlaceOpenBrace = @{
+            # https://github.com/PowerShell/PSScriptAnalyzer/blob/master/RuleDocumentation/PlaceOpenBrace.md
             Enable = $true
         }
 
-        # https://github.com/PowerShell/PSScriptAnalyzer/blob/master/RuleDocumentation/ProvideCommentHelp.md
         PSProvideCommentHelp = @{
+            # https://github.com/PowerShell/PSScriptAnalyzer/blob/master/RuleDocumentation/ProvideCommentHelp.md
             Placement = "begin"
         }
 
         # Check if your script uses cmdlets that are compatible
-        # https://github.com/PowerShell/PSScriptAnalyzer/blob/master/RuleDocumentation/UseCompatibleCmdlets.md
         PSUseCompatibleCmdlets = @{
+            # https://github.com/PowerShell/PSScriptAnalyzer/blob/master/RuleDocumentation/UseCompatibleCmdlets.md
             Compatibility = @(
                 #'desktop-2.0-windows'
                 'desktop-3.0-windows'
                 #'desktop-4.0-windows'
                 'desktop-5.1.14393.206-windows'
-                #'core-6.1.0-windows'
+                'core-6.1.0-windows'
+                #'core-6.1.0-linux'
+                #'core-6.1.0-macos'
             )
         }
 
-        # https://github.com/PowerShell/PSScriptAnalyzer/blob/master/RuleDocumentation/UseConsistentIndentation.md
-        PSUseConsistentIndentation = @{
+        <# PSUseConsistentIndentation = @{
+            # https://github.com/PowerShell/PSScriptAnalyzer/blob/master/RuleDocumentation/UseConsistentIndentation.md
             Enable = $true
-        }
+        } #>
 
-        # https://github.com/PowerShell/PSScriptAnalyzer/blob/master/RuleDocumentation/UseConsistentWhitespace.md
         PSUseConsistentWhitespace  = @{
-            Enable          = $true
+            # https://github.com/PowerShell/PSScriptAnalyzer/blob/master/RuleDocumentation/UseConsistentWhitespace.md
+            Enable                          = $true
+            CheckOperator                   = $false  # doesn't work with PSAlignAssignmentStatement enabled
+            CheckPipeForRedundantWhitespace = $true
+            CheckParameter                  = $true
         }
 
         UseCompatibleCommmands = @{
@@ -87,7 +101,14 @@
                 'win-8_x64_10.0.14393.0_5.1.14393.2791_x64_4.0.30319.42000_framework' # Server 2016
                 'win-8_x64_10.0.17763.0_5.1.17763.316_x64_4.0.30319.42000_framework' # Server 2019
                 'win-48_x64_10.0.17763.0_5.1.17763.316_x64_4.0.30319.42000_framework' # Win10
-                'win-48_x64_10.0.17763.0_6.1.3_x64_4.0.30319.42000_core' # Win10 PS Core
+                'win-8_x64_10.0.14393.0_6.2.4_x64_4.0.30319.42000_core' # Server 2016 PS Core
+                'win-8_x64_10.0.17763.0_6.2.4_x64_4.0.30319.42000_core' # Server 2019 PS Core
+                'win-4_x64_10.0.17763.0_6.2.4_x64_4.0.30319.42000_core' # Win10 PS Core
+                #'ubuntu_x64_18.04_6.2.4_x64_4.0.30319.42000_core'
+                'win-8_x64_10.0.14393.0_7.0.0_x64_3.1.2_core' # Server 2016 PS 7
+                'win-8_x64_10.0.17763.0_7.0.0_x64_3.1.2_core' # Server 2019 PS 7
+                'win-4_x64_10.0.17763.0_6.2.4_x64_3.1.2_core' # Win10 PS 7
+                #'ubuntu_x64_18.04_6.2.4_x64_3.1.2_core'
             )
             # https://github.com/PowerShell/PSScriptAnalyzer/blob/master/RuleDocumentation/UseCompatibleSyntax.md
             TargetedVersions = @(
@@ -102,8 +123,8 @@
             ) #>
         }
 
-        # https://github.com/PowerShell/PSScriptAnalyzer/blob/master/RuleDocumentation/UseCompatibleTypes.md
         UseCompatibleTypes = @{
+            # https://github.com/PowerShell/PSScriptAnalyzer/blob/master/RuleDocumentation/UseCompatibleTypes.md
             Enable = $true
             TargetProfiles = @(
                 'win-8_x64_6.2.9200.0_3.0_x64_4.0.30319.42000_framework' # Server 2012
@@ -111,7 +132,14 @@
                 'win-8_x64_10.0.14393.0_5.1.14393.2791_x64_4.0.30319.42000_framework' # Server 2016
                 'win-8_x64_10.0.17763.0_5.1.17763.316_x64_4.0.30319.42000_framework' # Server 2019
                 'win-48_x64_10.0.17763.0_5.1.17763.316_x64_4.0.30319.42000_framework' # Win10
-                'win-48_x64_10.0.17763.0_6.1.3_x64_4.0.30319.42000_core' # Win10 PS Core
+                'win-8_x64_10.0.14393.0_6.2.4_x64_4.0.30319.42000_core' # Server 2016 PS Core
+                'win-8_x64_10.0.17763.0_6.2.4_x64_4.0.30319.42000_core' # Server 2019 PS Core
+                'win-4_x64_10.0.17763.0_6.2.4_x64_4.0.30319.42000_core' # Win10 PS Core
+                #'ubuntu_x64_18.04_6.2.4_x64_4.0.30319.42000_core'
+                'win-8_x64_10.0.14393.0_7.0.0_x64_3.1.2_core' # Server 2016 PS 7
+                'win-8_x64_10.0.17763.0_7.0.0_x64_3.1.2_core' # Server 2019 PS 7
+                'win-4_x64_10.0.17763.0_6.2.4_x64_3.1.2_core' # Win10 PS 7
+                #'ubuntu_x64_18.04_6.2.4_x64_3.1.2_core'
             )
             # You can specify types to not check like this, which will also ignore methods and members on it:
             <# IgnoreTypes = @(
