@@ -1,4 +1,4 @@
-
+﻿
 #Requires -Version <%=$PLASTER_PARAM_ScriptPsVersion%>
 
 function <%=$PLASTER_PARAM_FunctionName%> {

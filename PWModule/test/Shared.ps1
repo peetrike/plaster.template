@@ -1,4 +1,4 @@
-#Requires -Modules BuildHelpers, Pester
+﻿#Requires -Modules BuildHelpers, Pester
 
 # Dot source this script in any Pester test script that requires the module to be imported.
 

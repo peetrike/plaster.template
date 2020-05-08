@@ -1,4 +1,4 @@
-#Requires -Modules psake, BuildHelpers
+﻿#Requires -Modules psake, BuildHelpers
 
 ###############################################################################
 # Customize these properties and tasks for your module.

@@ -1,4 +1,4 @@
-#Requires -Version <%=$PLASTER_PARAM_ScriptPsVersion%>
+﻿#Requires -Version <%=$PLASTER_PARAM_ScriptPsVersion%>
 
 <#PSScriptInfo
     .VERSION <%=$PLASTER_PARAM_Version%>

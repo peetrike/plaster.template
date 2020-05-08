@@ -1,4 +1,4 @@
-#Requires -Modules psake, BuildHelpers
+﻿#Requires -Modules psake, BuildHelpers
 
 ##############################################################################
 # DO NOT MODIFY THIS FILE!  Modify build.settings.ps1 instead.

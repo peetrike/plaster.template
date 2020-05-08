@@ -1,4 +1,4 @@
-#Requires -Modules BuildHelpers, Pester
+﻿#Requires -Modules BuildHelpers, Pester
 
 [System.Diagnostics.CodeAnalysis.SuppressMessage('PSUseDeclaredVarsMoreThanAssigments', '', Scope='*', Target='SuppressImportModule')]
 $SuppressImportModule = $true

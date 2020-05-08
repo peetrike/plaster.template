@@ -1,4 +1,4 @@
-# Implement your module commands in this script.
+﻿# Implement your module commands in this script.
 
 # Set-StrictMode -Version Latest
 

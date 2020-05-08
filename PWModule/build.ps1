@@ -1,4 +1,4 @@
-#Requires -Modules psake
+﻿#Requires -Modules psake
 [CmdletBinding()]
 param ()
 
