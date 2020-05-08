@@ -13,7 +13,7 @@ function <%=$PLASTER_PARAM_FunctionName%> {
     )]
     [OutputType([String])]
 
-    Param (
+    param (
                 # Param1 help description
             [Parameter(
                 Mandatory=$true,
