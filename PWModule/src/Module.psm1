@@ -1,6 +1,6 @@
 # Implement your module commands in this script.
 
-Set-StrictMode -Version Latest
+# Set-StrictMode -Version Latest
 
 Write-Verbose "Initializing module <%=$PLASTER_PARAM_ModuleName%>"
 
@@ -11,12 +11,12 @@ $Private = @( Get-ChildItem -Path $PSScriptRoot\Private\*.ps1 -ErrorAction Silen
 foreach ($import in @($Public + $Private)) {
     try {
         . $import.FullName
-    }
-    catch {
+    } catch {
         Write-Error -Message ("Failed to import function {0}: {1}" -f $import.FullName, $_)
     }
 }
 
-
-# Export only the functions using PowerShell standard verb-noun naming.
-Export-ModuleMember -Function *-*
+# Export only the functions in Public folder.
+foreach ($function in $Public) {
+    Export-ModuleMember -Function $function.BaseName
+}
